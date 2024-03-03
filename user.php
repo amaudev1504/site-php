@@ -1,3 +1,23 @@
+<?php 
+include 'connect.php';
+
+if (isset($_POST['submit'])){ // si on appuye sur submit, poster tous les champs
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $mobile=$_POST['mobile'];
+    $password=$_POST['password'];
+
+    $sql="insert into `crud` (name, email, mobile, password)
+    values('$name','$email','$mobile','$password')";
+    $result=mysqli_query($con, $sql);
+    if($result){
+        echo "Data inserted successfully";
+    }else{
+        die(mysqli_error($con));
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,7 +45,7 @@
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="Enter your password" name="password" autocomplete="off">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
